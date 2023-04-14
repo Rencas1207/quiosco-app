@@ -9,3 +9,28 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
+
+// Tables en prisma
+model Product {
+  id Int @id @default(autoincrement())
+  name String
+  price Float
+  image String?
+  category Category @relation(fields: [categoryId], references: [id])
+  categoryId Int
+}
+
+model Category {
+  id Int @id @default(autoincrement())
+  name String
+  icon String
+  products Product[]
+}
+
+model Orden {
+  id Int @id @default(autoincrement())
+  name String
+  fecha String
+  total Float
+  order Json
+}
