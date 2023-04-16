@@ -1,4 +1,4 @@
-import QuioscoProvider from '@/context/QuioscoProvider';
+import { QuioscoProvider } from '@/context/QuioscoProvider';
 import '@/styles/globals.css';
 
 export default function App({ Component, pageProps }) {
