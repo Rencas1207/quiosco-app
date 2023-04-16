@@ -1,10 +1,6 @@
-import { QuioscoContext } from '@/context/QuioscoProvider'
 import { useContext } from 'react'
+import QuioscoContext from '@/context/QuioscoProvider'
 
-const useQuiosco = () => {
-   return (
-      useContext(QuioscoContext)
-   )
+export default function useQuiosco() {
+   return useContext(QuioscoContext)
 }
-
-export default useQuiosco
