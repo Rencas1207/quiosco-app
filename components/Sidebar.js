@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Category from './Category';
 
 const Sidebar = () => {
-  const { categorys } = useQuiosco();
+  const { categories } = useQuiosco();
   return (
     <>
       <Image
@@ -15,7 +15,7 @@ const Sidebar = () => {
       />
 
       <nav className="mt-10">
-        {categorys.map((category) => (
+        {categories?.map((category) => (
           <Category key={category.id} category={category} />
         ))}
       </nav>

@@ -4,21 +4,34 @@ import { createContext, useEffect, useState } from 'react'
 const QuioscoContext = createContext();
 
 export function QuioscoProvider({ children }) {
-   const [categorys, setCategorys] = useState([]);
+   const [categories, setCategories] = useState([]);
+   const [currentCategory, setCurrentCategory] = useState({});
 
-   const getCategorys = async () => {
-      const { data } = await axios('/api/categorys');
-      setCategorys(data);
+   const getCategories = async () => {
+      const { data } = await axios('/api/categories');
+      setCategories(data);
    }
 
    useEffect(() => {
-      getCategorys();
+      getCategories();
    }, [])
+
+   useEffect(() => {
+      setCurrentCategory(categories[0]);
+   }, [categories])
+
+
+   const handleClickCategory = id => {
+      const category = categories.filter(cat => cat.id === id);
+      setCurrentCategory(category[0]);
+   }
 
    return (
       <QuioscoContext.Provider
          value={{
-            categorys
+            categories,
+            currentCategory,
+            handleClickCategory
          }}
       >
          {children}
