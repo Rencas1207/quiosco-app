@@ -36,11 +36,11 @@ export default function Layout({ children, pagina }) {
         </main>
       </div>
 
-      {modal && (
+      {
         <Modal isOpen={modal} style={customStyles}>
           <ModalProduct />
         </Modal>
-      )}
+      }
     </>
   );
 }
