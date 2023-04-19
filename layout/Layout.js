@@ -1,5 +1,6 @@
 import ModalProduct from '@/components/ModalProduct';
 import Sidebar from '@/components/Sidebar';
+import Steps from '@/components/Steps';
 import useQuiosco from '@/hooks/useQuiosco';
 import Head from 'next/head';
 import Modal from 'react-modal';
@@ -35,7 +36,10 @@ export default function Layout({ children, pagina }) {
           <Sidebar />
         </aside>
         <main className="md:w-8/12 xl:w-3/4 2xl:w-4/5 h-screen overflow-y-scroll">
-          <div className="p-10">{children}</div>
+          <div className="p-10">
+            <Steps />
+            {children}
+          </div>
         </main>
       </div>
 
