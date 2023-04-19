@@ -46,6 +46,7 @@ export function QuioscoProvider({ children }) {
       } else {
          setPedido([...pedido, product]);
       }
+      setModal(false);
    }
 
    return (
@@ -58,7 +59,8 @@ export function QuioscoProvider({ children }) {
             handleSetProduct,
             modal,
             handleChangeModal,
-            handleAddPedido
+            handleAddPedido,
+            pedido
          }}
       >
          {children}

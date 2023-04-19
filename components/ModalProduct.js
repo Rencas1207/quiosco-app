@@ -1,11 +1,31 @@
 import { formatMoney } from '@/helpers';
 import useQuiosco from '@/hooks/useQuiosco';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const ModalProduct = () => {
-  const { product, handleChangeModal, handleAddPedido } = useQuiosco();
-  const [quantity, setQuantity] = useState(1);
+  const { product, handleChangeModal, handleAddPedido, pedido } = useQuiosco();
+  const [edition, setEdition] = useState(false);
+  const handleInitialState = () => {
+    const productoState = pedido?.find((prod) => prod.id === product.id);
+    if (productoState) {
+      setEdition(true);
+      return productoState.quantity;
+    }
+    return 1;
+  };
+  const [quantity, setQuantity] = useState(handleInitialState);
+
+  // useEffect(() => {
+  //   // Comprobar si el modal actual esta en el pedido
+  //   if (pedido.some((pedidoState) => pedidoState.id === product.id)) {
+  //     const productEdition = pedido.find(
+  //       (pedidoState) => pedidoState.id === product.id
+  //     );
+  //     setEdition(true);
+  //     setQuantity(productEdition.quantity);
+  //   }
+  // }, [product, pedido]);
 
   return (
     <div className="md:flex gap-10">
@@ -98,7 +118,7 @@ const ModalProduct = () => {
           className="bg-indigo-600 hover:bg-indigo-800 px-5 py-2 mt-5 text-white font-bold uppercase rounded"
           onClick={() => handleAddPedido({ ...product, quantity })}
         >
-          Añadir al pedido
+          {edition ? 'Guardar cambios' : 'Añadir al pedido'}
         </button>
       </div>
     </div>
