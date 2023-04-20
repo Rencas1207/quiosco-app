@@ -38,7 +38,7 @@ export function QuioscoProvider({ children }) {
       setModal(!modal)
    }
 
-   const handleAddPedido = ({ categoryId, image, ...product }) => {
+   const handleAddPedido = ({ categoryId, ...product }) => {
       if (pedido.some(productState => productState.id === product.id)) {
          // update quantity
          const pedidoUpdated = pedido.map(productState => productState.id === product.id
