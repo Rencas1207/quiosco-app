@@ -10,6 +10,7 @@ export function QuioscoProvider({ children }) {
    const [product, setProduct] = useState({});
    const [modal, setModal] = useState(false);
    const [pedido, setPedido] = useState([]);
+   const [step, setStep] = useState(1);
 
    const getCategories = async () => {
       const { data } = await axios('/api/categories');
@@ -52,6 +53,10 @@ export function QuioscoProvider({ children }) {
       setModal(false);
    }
 
+   const handleChangeStep = step => {
+      setStep(step)
+   }
+
    return (
       <QuioscoContext.Provider
          value={{
@@ -63,7 +68,9 @@ export function QuioscoProvider({ children }) {
             modal,
             handleChangeModal,
             handleAddPedido,
-            pedido
+            pedido,
+            step,
+            handleChangeStep
          }}
       >
          {children}
