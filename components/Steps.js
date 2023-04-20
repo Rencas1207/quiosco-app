@@ -1,4 +1,3 @@
-import useQuiosco from '@/hooks/useQuiosco';
 import { useRouter } from 'next/router';
 
 const steps = [
@@ -9,13 +8,12 @@ const steps = [
 
 const Steps = () => {
   const router = useRouter();
-  const { step, handleChangeStep } = useQuiosco();
 
   const calculateProgress = () => {
     let width;
-    if (step === 1) {
+    if (router.pathname === '/') {
       width = 2;
-    } else if (step === 2) {
+    } else if (router.pathname === '/resumen') {
       width = 46;
     } else {
       width = 100;
@@ -30,7 +28,6 @@ const Steps = () => {
           <button
             onClick={() => {
               router.push(step.url);
-              handleChangeStep(step.step);
             }}
             className="text-2xl font-bold"
             key={step.step}
