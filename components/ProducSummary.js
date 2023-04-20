@@ -1,7 +1,10 @@
 import { formatMoney } from '@/helpers';
+import useQuiosco from '@/hooks/useQuiosco';
 import Image from 'next/image';
 
 const ProducSummary = ({ product }) => {
+  const { handleEditQuantities, handleRemoveProduct } = useQuiosco();
+
   return (
     <div className="shadow p-5 mb-3 flex gap-10 items-center">
       <div className="md:w-1/6">
@@ -28,6 +31,7 @@ const ProducSummary = ({ product }) => {
         <button
           type="button"
           className="bg-sky-700 flex gap-2 px-5 py-2 text-white rounded-md font-bold uppercase shadow-md w-full lg:w-auto"
+          onClick={() => handleEditQuantities(product.id)}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -42,6 +46,7 @@ const ProducSummary = ({ product }) => {
         <button
           type="button"
           className="bg-red-700 flex gap-2 px-5 py-2 text-white rounded-md font-bold uppercase shadow-md w-full lg:w-auto mt-5"
+          onClick={() => handleRemoveProduct(product.id)}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

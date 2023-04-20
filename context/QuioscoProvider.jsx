@@ -52,6 +52,16 @@ export function QuioscoProvider({ children }) {
       setModal(false);
    }
 
+   const handleEditQuantities = id => {
+      const productUpdate = pedido.filter(product => product.id === id)
+      setProduct(productUpdate[0]);
+      setModal(true);
+   }
+
+   const handleRemoveProduct = id => {
+      const pedidoUpdated = pedido.filter(product => product.id !== id);
+      setPedido(pedidoUpdated);
+   }
 
    return (
       <QuioscoContext.Provider
@@ -65,6 +75,8 @@ export function QuioscoProvider({ children }) {
             handleChangeModal,
             handleAddPedido,
             pedido,
+            handleEditQuantities,
+            handleRemoveProduct
          }}
       >
          {children}
