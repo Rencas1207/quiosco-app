@@ -1,21 +1,15 @@
 import useQuiosco from '@/hooks/useQuiosco';
 import Layout from '@/layout/Layout';
-import { useCallback, useEffect } from 'react';
 
 export default function Total() {
-  const { pedido } = useQuiosco();
+  const { pedido, name, setName } = useQuiosco();
 
-  const comprobarPedido = useCallback(() => {
-    return pedido.length === 0;
-  }, [pedido]);
-
-  useEffect(() => {
-    comprobarPedido();
-  }, [pedido, comprobarPedido]);
+  const comprobarPedido = () => {
+    return pedido.length === 0 || name === '' || name.length < 3;
+  };
 
   const colocarOrden = (e) => {
     e.preventDefault();
-    console.log('Enviando orden');
   };
 
   return (
@@ -32,6 +26,8 @@ export default function Total() {
             id="name"
             type="text"
             className="bg-gray-200 w-full lg:w-1/3 mt-3 p-2 rounded-md outline-none"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
           />
         </div>
 

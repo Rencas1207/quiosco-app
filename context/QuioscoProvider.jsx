@@ -11,6 +11,7 @@ export function QuioscoProvider({ children }) {
    const [product, setProduct] = useState({});
    const [modal, setModal] = useState(false);
    const [pedido, setPedido] = useState([]);
+   const [name, setName] = useState('');
 
    const router = useRouter();
 
@@ -80,7 +81,9 @@ export function QuioscoProvider({ children }) {
             handleAddPedido,
             pedido,
             handleEditQuantities,
-            handleRemoveProduct
+            handleRemoveProduct,
+            name,
+            setName
          }}
       >
          {children}
