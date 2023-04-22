@@ -12,6 +12,7 @@ export function QuioscoProvider({ children }) {
    const [modal, setModal] = useState(false);
    const [pedido, setPedido] = useState([]);
    const [name, setName] = useState('');
+   const [total, setTotal] = useState(0);
 
    const router = useRouter();
 
@@ -28,6 +29,10 @@ export function QuioscoProvider({ children }) {
       setCurrentCategory(categories[0]);
    }, [categories])
 
+   useEffect(() => {
+      const newTotal = pedido.reduce((total, product) => (product.price * product.quantity) + total, 0);
+      setTotal(newTotal);
+   }, [pedido])
 
    const handleClickCategory = id => {
       const category = categories.filter(cat => cat.id === id);
@@ -68,6 +73,10 @@ export function QuioscoProvider({ children }) {
       setPedido(pedidoUpdated);
    }
 
+   const colocarOrden = async (e) => {
+      e.preventDefault();
+   };
+
    return (
       <QuioscoContext.Provider
          value={{
@@ -83,7 +92,9 @@ export function QuioscoProvider({ children }) {
             handleEditQuantities,
             handleRemoveProduct,
             name,
-            setName
+            setName,
+            colocarOrden,
+            total
          }}
       >
          {children}

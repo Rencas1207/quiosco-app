@@ -1,15 +1,12 @@
+import { formatMoney } from '@/helpers';
 import useQuiosco from '@/hooks/useQuiosco';
 import Layout from '@/layout/Layout';
 
 export default function Total() {
-  const { pedido, name, setName } = useQuiosco();
+  const { pedido, name, setName, colocarOrden, total } = useQuiosco();
 
   const comprobarPedido = () => {
     return pedido.length === 0 || name === '' || name.length < 3;
-  };
-
-  const colocarOrden = (e) => {
-    e.preventDefault();
   };
 
   return (
@@ -33,7 +30,8 @@ export default function Total() {
 
         <div className="mt-10">
           <p className="text-2xl">
-            Total a pagar {''} <span className="font-bold">$200</span>
+            Total a pagar {''}{' '}
+            <span className="font-bold">{formatMoney(total)}</span>
           </p>
         </div>
 
