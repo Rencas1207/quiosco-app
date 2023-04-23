@@ -4,7 +4,6 @@ export default async function handler(req, res) {
   const prisma = new PrismaClient();
 
   if (req.method === 'POST') {
-    console.log(req.body.pedido);
     const order = await prisma.orden.create({
       data: {
         name: req.body.name,
@@ -13,6 +12,7 @@ export default async function handler(req, res) {
         fecha: req.body.fecha,
       },
     });
+    console.log(order);
     res.json(order);
   }
 }
