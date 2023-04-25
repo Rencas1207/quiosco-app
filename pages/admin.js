@@ -6,7 +6,6 @@ import useSWR from 'swr';
 export default function Admin() {
   const fetcher = () => axios('/api/orders').then((datos) => datos.data);
   const { data, error, isLoading } = useSWR('/api/orders', fetcher);
-  console.log(data);
 
   return (
     <AdminLayout pagina={'Admin'}>
@@ -14,7 +13,7 @@ export default function Admin() {
       <p className="text-2xl my-1">Administra las ordenes</p>
 
       {data && data.length ? (
-        data.map((order) => <Order key={order.id} order={order} />)
+        data.map((orden) => <Order key={orden.id} orden={orden} />)
       ) : (
         <p>No hay ordenes pendientes</p>
       )}
