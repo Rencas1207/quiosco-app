@@ -22,7 +22,6 @@ export default async function handler(req, res) {
         fecha: req.body.fecha,
       },
     });
-    console.log(order);
     res.status(200).json(order);
   }
 }
