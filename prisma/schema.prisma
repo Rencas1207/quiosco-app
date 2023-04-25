@@ -33,4 +33,5 @@ model Orden {
   fecha String
   total Float
   order Json
+  state Boolean @default(false)
 }
