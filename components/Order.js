@@ -9,11 +9,9 @@ const Order = ({ orden }) => {
   const completarOrden = async () => {
     try {
       const data = await axios.post(`/api/orders/${id}`);
-      console.log(data);
       toast.success('Orden Lista');
     } catch (error) {
       toast.errorr('Hubo un error');
-      console.log(error);
     }
   };
 
